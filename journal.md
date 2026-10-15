@@ -16,14 +16,20 @@ finished setting up the Pis (finally), despite the train of issues that tried to
  - of course ssh is blocked on the school wifi (what im using now), but rpi connect works enough.
 that was pretty much the entire day though, the only other thing i did was getting a git repository set up on the pi
 
+![](pictures/placeholder.png)
+
 ## 7/9 - ideas and groups - 7 hours
 the start of the day was spent with all of us drawing our ideas for how we'd design a robot that could complete the course and then discussing what we drew, which was pretty helpful since i changed my design a few times based on what other people drew. i spent some time trying to get the IMX708 camera they bought to connect, which of course took **the entire day** 😭
 the problem was that i was plugging it into port zero but the line in `/boot/firmware/config.txt` was `dtoverlay=imx708`. of *course* it was supposed to be include `cam0` to specify it was plugged into port 0 and not the apparent default of port 1(?!?).
 but whatever, i got the camera plugged in and showing stills by the end of the day
 
+![](pictures/placeholder.png)
+
 ## 7/10 - beginning on ball detection - 7 hours
 one of my partners had already been working on a ball detection demo over the last couple of days that worked with their laptop camera, so i (Codex) took some time to add a picamera2 backend along with the existing opencv2 one and getting the code actually uploaded to the pi. there were a bunch of issues with libraries and venvs and maintaining stable input and output to and from the pi, but eventually we got some kind of a demo working. we had to plug in the pi's power supply in the corner of the room and partially covered by like 20 chairs, but the ball detection kind of almost maybe worked a bit! 
 one problem was that they made the program assuming manual mouse input for initially cataloging the different colored balls under those lighting conditions, but that had to be removed because there was no good way to have mouse input and realtime monitor output for the pi *and we certainly wouldn't have that on the course itself)
+
+![](pictures/placeholder.png)
 
 ## 7/13 - our real groups! and buyin stuff - 7 hours
 we've finally formed our real groups! i got placed with two dudes, one my age and the other surprisingly young for the caliber of challenge we had ahead
@@ -36,8 +42,12 @@ we also got **$1000** to spend at our discretion for the next two weeks!!!!!!!!!
 6. tires: we spent a lot of time on this decision! once again, lucas came in clutch suggesting rc car crawlers wheels because they have a lot of friction but also are very bendy. plus they have listed dimensions and a lip to attach a "bead-locked" wheel to, so we can just design our own wheel and put it in once it arrives
 and that was the day! whole lot of money spent for sure but its fineeeeeee (probably) *(hopefully)*
 
+![](pictures/placeholder.png)
+
 ## 7/14 - figuring out the wheels - 7 hours
 luckily the tires were able to arrive this morning, so Jade (one of the adults at the program) brought them in and we got to designing + 3d printing wheels for them! luckily we have full access to a bambu lab x1 carbon here, so we took some lessons from Carlos (one of the mentors) in Onshape and tried to design a preliminary wheel. of course it didnt fit cause we have no idea how to use calipers seemingly, but the second attempt actually worked pretty well! you could try to turn the tire and stop the wheel, and it wouldnt move unless you put a lot of force. we left a shaft hole in it ofc so we can put it on the motors when we recieve them tomorrow. very awesome very cool!!
+
+![](pictures/placeholder.png)
 
 ## 7/15 - holy carp its actually driving (technically) *(barely)* - 7 hours
 by that i mean we cut holes in a cardboard box, screwed the motors into them, stuck the wheels on, and codexed like no tomorrow until the motors somehow worked (THANK YOU SO MUCH LUCAS and also gpt luna), but our stupid dingy two-wheeled cardboard box actually moved! baby steps i swear
@@ -65,6 +75,8 @@ my day was spent entirely on programming two things:
 it wasnt alllll codex tho, i came up with the all ideas for these and usually gave rather specific details for how i wanted them implemented
 
 i also worked on the **ball detection**, which mostly involved sitting down and just adjusting parameters until the detection was like maybe almost passable, adding (asking codex to) add new parameters when the existing ones didn't encompass the mistaks the detector was making. needless to say this lowk took a while but we're in a good place rn i think!!! we have a moving robot with some kinda maybe working ball detection, which is like half of the first phase (the easiest part). so were slightly cooked but still yay it works!! 
+
+![](pictures/placeholder.png)
 
 ## 7/20 - beginning on the suspension and new drive train - 7 hours
 almost *all* of today was spent discussing and weighing different suspension designs and drive train implementations, culminating us in finally buying some parts and basically finishing out our $1000 budget from the start of the program to the end of this week. we settled on the 4 independent legs early, so the options were between:
@@ -99,6 +111,8 @@ attached: us figuring out where we're gonna mount both the leg and the spring on
 guess what **THE BEARINGS AND SHAFTS GOT DELAYED!!!!** **YAAAAAAAAAAAYYYYY** its fine.
 we spent today CADing and printing new designs for both the leg inserts and one piece of the rod-ends, and i think they're in a pretty good place (for not having the actual components needed). I also did some testing with the ball/cone detection and came to the conclusion that it simply sucks and just isn't good enough, so I got Codex to give me suggestions for an overhaul and I picked which approach would be the best to go for. The demo it produced for me using new shape detection and differentiating objects from its surroundings (in camera space) was *so* bad that I've decided on a completely different approach altogether: *ML!!*
 I got it to do *another* overhaul that would add a mode to the existing code that allowed camera snapshots to be taken and put in a folder with a press of a button on the controller. Then, it made a tool that could be run on my laptop that would bring the images up one by one, I would mark balls and cones on there, and then that data would be used to train an ONNX model (with ROCM acceleration on my Radeon 890M iGPU, of course) that could then be uploaded onto the Pi and ran as the new detection backend!! we'll see if it works, cause I did all this at the end of the day and had no time to gather training data (of *course* i came up with this after two days of having very little to do). 
+
+![](pictures/placeholder.png)
 
 ## 7/24 - assembly, finally! (+ a field trip) - 7 hours
 the parts came! literally all of today was spent assembling the drive system as my partners were drilling the holes and cutting the shafts for the wheels, pivots, and spring dowels. we've unfortunately found out that the belt drives skip kind of a lot, so hopefully this doesn't cause issues with driving under torque when we get to that... (i swear if this is foreshadowing)
@@ -144,6 +158,8 @@ we got to go to spacex and have a little tour with one of patricks friends!!!!!!
 
 no photo(s) cause we weren't allowed to take any but its chill
 
+![](pictures/placeholder.png)
+
 ## 7/30 - the hill has finally been conquered... - 7 hours
 I FORGOT TO PUT THE PRINT PLATE IN THE PRINTER YESTERDAY GOD DAMN IT 😭😭😭😭😭 its fine. ok so today was generally pretty mundane BUT!!! WE DROVE UP THE HILL LITERALLY ONCE!!!!! just on a whim my partner decided to go full power up the hill after my other partner had just loctited every set screw to see if we could make it, and we did!!!!!!!!!!!!!!!!!!!!!!
 *.......unfortunately.........* nobody filmed it...................................
@@ -174,19 +190,27 @@ at this point i am positively destroyed and fuming, luckily we have some very go
 long story short, we slowly went insane with tokyo drift in the background as i pulled my hair out from the pi frying our cameras and the movie making it hard to focus, while one of my partners locked in to an unprecedented level, one just watched the movie casually, and the rest of us went crazy for no particular reason at all. this was a wild day (hence why im writing this the day after)
 never eating at the melt again bruh 😭
 
+![](pictures/placeholder.png)
+
 ## 8/3 - dawn of the final lock-in - 7 hours
 i am gonna be gone wednesday, thursday, and friday this week due to my schools orientation happening right before CalTech's WiSTEM (which i am indeed going to :3), both of which are on weekdays. thus, with the intake challenge pushed *even further* to this wednesday (marking a full week delay), i will need to spend some time getting our existing systems to a good place and helping my partners with whatever they need over today and tomorrow before im gone. that being said, we did very little locking in today (hence calling it the dawn) because we had both a speaker and a tour!! 
 Will Heltsley, former VP of Propulsion of SpaceX and an insanely knowledgable engineer, talked to us about different engineering concepts and some strategies for finding a stable job and a community of like-minded nerds that are fun to work beside. i asked a few questions about working with teams (because this program has shown me that it'll be a *very* valuable skill to learn), especially since Will has done everything from working on a 3-person team to managing a group of 350 engineers. he was really helpful!! 
 we also got to tour another startup, Forge Atomics, and it was awesome to see the inner workings of a company that is just getting of the ground! they had a really cool concept and i loved their mission, which in talking to one of the co-founders (Rex the goat) i learned was one of the most important things in finding a team that is going to work well: your missions need to align. also i learned from both mentors that, unless you plan on doing something research heavy like quantum computing, you should NOT get a PhD. guess what i want to do!
+
+![](pictures/placeholder.png)
 
 ## 8/4 - goodbye, bobot... - 7 hours
 okay so like i said last entry ill be leaving for three days, which means that i had to finish up some things today! i decided at this point that we were not going to able to mount a plate in the front for the intake (rip that idea and the whole bunch of filament we wasted on it 😭) so i spent the entire day pivoting on that idea and making the articulated suspension!!!! this was a really cool idea i talked with carlos about for like an hour, although we were thinking about *only* servos for suspension. this time around, i modified those servo mounts to place the head of of the edge of the main plate and used a bit of kevlar string Trina donated (ty Trina!) and tied it to the servo head and around the wheels hub. this means that when the servo is drawn up, the string pulls on the wheel, compresses the spring, and brings the robot down.
 for context, there is an 8 inch height requirement* that we had yet to succesfully get under. by that i mean the robot was like 11in. so, to get around that, these servo mounts could effectively deactivate the suspension at will, not only making driving more stable in the ball collection phase, but also actually getting under the height requirement! (since it was only a starting height requirement, we were allowed to expand after)
 anyways i made one mount, tested it, it didnt fully work, designed another and printed two of them, codexed while that was printing, tested one (it worked perfectly), printed 2 more, codexed the code for different states and positions for the servos and configuration stuff ofc, assembled the rest, tested all 4 of them out at the same time, actually tied good knots, and it was done by the end of the day!! im really proud of finishing this subsytem in one day before i left, it was suprisingly fun to see the robot dancing and doing pushups as it drove. and honestly, i think today really gave me that feeling of how incredible it is to see something like this just come to life, the way i feel when i make progress on a good coding project. i lowk want a 3d printer now... maybe that radish jam money could really come in handy.......
 
+![](pictures/placeholder.png)
+
 ## 8/10 - WERE BACK BOYS (gender neutral) - 7 hours
 OKAY it is time to get down to business we do NOT have much time. first order of business was looking at the TPU wheels reflect printed! they had come in while i was gone, and compared to our flywheels they were actually suprisingly good (although they lowk had their heads blown shmoove off (the tops were weirdly disconnected and ripped off)). most of all, our wheels were much too stiff and theirs were relatively soft, so we decided to go with theirs. we'd also gotten metal parts back from lucas; unfortunately, lucas' parts were cut kinda incorrectly and for whatever reason the machine shop didn't make them!! so, i spent today primarily trying to figure out how to do intake while one partner was working on (OF COURSE) retightening and loctite-ing the set screws and the other partner was working on finishing/testing the climb with a smaller motor he bought online over my hiatus. and by figuring out the intake, i mean taping a cardboard box to the bottom of the robot and letting it flap down while desperately PRAYING that the balls go in. i was also driving around a bunch trying to figure out why the robot was still really struggling to take turns, especially on the foam. eventually i had the insight that the friction on the wheels was simply too much, and Lucas came up with the idea of wrapping tape around the wheels to reduce it!! after that it was insane how well it drove and took turns, especially off of the foam floor. i lowk drove it around for like 45 mins straight it was so insanely fun to see something we made acting like a real machine, cause it was driving at a quality i could actually expect in like a real product! it was so cool and gratifying :3
 of course i forgot to get a picture of video of it, which i have a feeling im gonna regret...
+
+![](pictures/8-10.mp4)
 
 ## 8/11 - its officially frickmas eve... - 7 hours
 and i call it frickmas cause THE COMPETITIONS TOMORROW OMG OMG OMG OMG
